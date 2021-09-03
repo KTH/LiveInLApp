@@ -22,6 +22,8 @@ dependencies {
     implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    runtimeOnly project(':frontend')
 }
 
 dependencyManagement {
@@ -33,3 +35,5 @@ dependencyManagement {
 test {
     useJUnitPlatform()
 }
+
+
