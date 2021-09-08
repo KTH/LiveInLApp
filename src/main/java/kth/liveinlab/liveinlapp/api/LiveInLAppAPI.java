@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Component
 @RestController
-@RequestMapping("/testing")
+@RequestMapping("/api")
 public interface LiveInLAppAPI {
 
 
