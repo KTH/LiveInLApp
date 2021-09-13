@@ -140,3 +140,17 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Intellij
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Intellij generated files
+.idea/**/contentModel.xml
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
