@@ -1,5 +1,6 @@
 import kthlogo from "kth-style/public/img/kth-style/KTH_Logotyp_RGB_2013-2.svg";
 import "kth-style/dist/css/kth-bootstrap.css";
+import "../style/Header.css";
 import "kth-style/public/js/menus.js";
 
 const Header = () => (
