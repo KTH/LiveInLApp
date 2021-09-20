@@ -2,6 +2,7 @@ import logo from '../logo.svg';
 import '../style/Home.css';
 import { Button } from 'reactstrap';
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 import Header from "./Header";
 import PrimaryTopMenu from "./PrimaryTopMenu";
 function App() {
@@ -32,6 +33,7 @@ function App() {
                     <button className="btn btn-secondary">Secondary</button>
                 </header>
             </div>
+        <Footer />
         </div>
     );
 }
