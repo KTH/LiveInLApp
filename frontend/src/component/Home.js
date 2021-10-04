@@ -1,4 +1,4 @@
-import logo from '../logo.svg';
+import '../../node_modules/kth-style/dist/css/kth-bootstrap.css'
 import '../style/Home.css';
 import { Button } from 'reactstrap';
 import { Link } from "react-router-dom";
@@ -6,17 +6,17 @@ function App() {
     return (
         <div className="App">
             <div className="container">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <div className="alert alert-success" role="alert">
-                        This is a success alert—check it out!
+                <main id="mainContent" className="mainContent">
+                    <h1>Welcome to KTH Live-in-lab data export</h1>
+                    <p>Through this website you can view a catalog over the data that is contained within the Live-in-lab Project as well as request a extraction of data to a file using the request form.</p>
+                    <p>To request a export of data to file you will have to be logged in with your KTH account.</p>
+                    <div className="btn-group-lg">
+                        <Link to="/form" className="btn btn-primary next mr-1">Go to the request form</Link>
+                        <Link to="/catalog" className="btn btn-primary next">Go to the data catalog</Link>
                     </div>
-                    <Link to="/form" className="btn btn-primary">Go to Form</Link>
-                    <Button size="sm" color="primary" href="/api/helloWorld" >Test API</Button>
-                    <button className="btn btn-primary">Primary button</button>
-                    <button className="btn btn-secondary">Secondary</button>
-                </header>
+                </main>
             </div>
+            <div className="separator gray" />
         </div>
     );
 }

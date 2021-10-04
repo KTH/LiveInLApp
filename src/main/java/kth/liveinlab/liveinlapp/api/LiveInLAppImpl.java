@@ -1,5 +1,8 @@
 package kth.liveinlab.liveinlapp.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import kth.liveinlab.liveinlapp.model.RequestForm;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,5 +34,20 @@ public class LiveInLAppImpl implements LiveInLAppAPI {
             throwables.printStackTrace();
         }
         return "<h1>"+res+"</h1><br/>";
+    }
+
+    @Override
+    public String requestForm(String requestForm) {
+        ObjectMapper mapper = new ObjectMapper();
+        RequestForm reqForm = null;
+        String res = "{\"status\":\"ok\"}";
+        try {
+            reqForm = mapper.readValue(requestForm,RequestForm.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "{\"status\":\"Data mapping failed\"}";
+        }
+
+        return res;
     }
 }

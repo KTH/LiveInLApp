@@ -43,7 +43,7 @@ const PrimaryTopMenu = () => (
                                 data-id="menu-group-1-1064540-850826453"
                             >
                                 <div className="headerItem">
-                                    <a className="nav-link" href="/about-data">
+                                    <a className="nav-link" href="/catalog">
                                         {" "}
                                         About the data
                                     </a>
@@ -51,7 +51,7 @@ const PrimaryTopMenu = () => (
                             </li>
                             <li className="item nav-item megaItem" data-content-id="1.1064542">
                                 <div className="headerItem">
-                                    <a className="nav-link" href="/">
+                                    <a className="nav-link" href="/about">
                                         {" "}
                                         About Live-in Labs
                                     </a>

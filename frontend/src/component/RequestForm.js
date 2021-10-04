@@ -15,50 +15,72 @@ const DatePickerField = ({ name, value, onChange }) => {
         />
     );
 };
+
+const submitForm = (jsonbody) => {
+    fetch('http://localhost:8080/api/requestForm/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: jsonbody,
+    })
+        .then((res) => res.json())
+        .then((result) =>  console.log(result))
+        .catch((err) => console.log('error'))
+};
+
 const RequestForm = () => (
     <div className="requester">
         <div className="container">
-            <br/>
+            <h1>Data export request</h1>
+            <p>Follow the form and input the parameters according to what you need.</p>
             <Formik
                 initialValues={{
                     testbedLiL: [],
                     testbedEM: [],
                     testbedAH: [],
                     dataFreq: [],
-                    fromDate: "",
-                    untilDate: "",
+                    startDate: "",
+                    endDate: "",
                     title: "",
                     desc: "",
 
                 }}
                 onSubmit={async (values) => {
                     await sleep(500);
-                    alert(JSON.stringify(values, null, 2));
+                    submitForm(JSON.stringify(values, null, 2));
+                    document.getElementById("alert-submit").style.display = "block";
+                    //alert(JSON.stringify(values, null, 2));
                 }}
             >
                 {({ values ,setFieldValue}) => (
                     <Form>
-                        <div className="react-datepicker-wrapper">
-                            <div className="react-datepicker__input-container">
-                                <label htmlFor="fromDate">Start date</label>
-                                <DatePickerField
-                                    name="fromDate"
-                                    value={values.fromDate}
-                                    onChange={setFieldValue}
-                                />
-                            </div>
-                        </div>
-                        <div className="react-datepicker-wrapper">
-                            <div className="react-datepicker__input-container">
-                                <label htmlFor="untilDate">End date</label>
-                                <DatePickerField
-                                    name="untilDate"
-                                    value={values.untilDate}
-                                    onChange={setFieldValue}
-                                />
-                            </div>
-                        </div>
                         <div className="form-group">
+
+                            <div className="react-datepicker-wrapper">
+                                <div className="react-datepicker__input-container">
+                                    <label htmlFor="startDate">Start date</label>
+                                    <DatePickerField
+                                        name="startDate"
+                                        value={values.startDate}
+                                        onChange={setFieldValue}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="react-datepicker-wrapper">
+                                <div className="react-datepicker__input-container">
+                                    <label htmlFor="endDate">End date</label>
+                                    <DatePickerField
+                                        name="endDate"
+                                        value={values.endDate}
+                                        onChange={setFieldValue}
+                                    />
+                                </div>
+                            </div>
+
+                            <br/>
+
                             <label className="form-control-label" htmlFor="exampleFormControlCheckboxes">
                                 Testbed LiL
                             </label>
@@ -105,7 +127,7 @@ const RequestForm = () => (
                                 </label>
                             </div>
                         </div>
-                <br/> <br/>
+                 <br/>
                         <div className="form-group">
                             <label className="form-control-label" htmlFor="exampleFormControlCheckboxes">
                                 Testbed EM
@@ -135,7 +157,7 @@ const RequestForm = () => (
                                 </label>
                             </div>
                         </div>
-                <br/> <br/>
+                 <br/>
                         <div className="form-group">
                             <label className="form-control-label" htmlFor="exampleFormControlCheckboxes">
                                 Testbed AH
@@ -165,7 +187,7 @@ const RequestForm = () => (
                                 </label>
                             </div>
                         </div>
-                        <br/><br/>
+                        <br/>
                         <div className="form-group">
                             <label className="form-control-label" htmlFor="exampleFormControlCheckboxes">
                                 Data frequency requested
@@ -195,7 +217,7 @@ const RequestForm = () => (
                                 </label>
                             </div>
                         </div>
-                        <br/><br/>
+                        <div className="form-group">
                         <label htmlFor="title">Project title</label>
                         <Field
                             id="title"
@@ -211,13 +233,21 @@ const RequestForm = () => (
                             placeholder="Project description..."
                             type="text"
                         />
-                        <br/><br/>
+                        </div>
                         <button type="submit" className="btn btn-success">Submit</button>
-                        <br/><br/>
+
+                        <div id="alert-submit" className="alert-submit">
+                            <br/>
+                            <div id="successDiv" className="alert alert-success" role="alert">
+                                Submitted successfully!
+                            </div>
+                        </div>
                     </Form>
                 )}
             </Formik>
+            <div className="separator gray" />
         </div>
+
     </div>
     )
 export default RequestForm
