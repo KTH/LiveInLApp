@@ -1,6 +1,8 @@
 package kth.liveinlab.liveinlapp.api;
 
+import kth.liveinlab.liveinlapp.model.DataTableObject;
 import kth.liveinlab.liveinlapp.model.RequestForm;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,16 @@ public interface LiveInLAppAPI {
     @RequestMapping("/helloWorld")
     @Produces({MediaType.TEXT_PLAIN})
     String helloWorld(HttpServletRequest request);
+
+    @GET
+    @RequestMapping("/getTableData")
+    @Produces({MediaType.APPLICATION_JSON})
+    ResponseEntity<Object> getTableData(HttpServletRequest request);
+
+    @GET
+    @RequestMapping("/getExampleData")
+    @Produces({MediaType.APPLICATION_JSON})
+    ResponseEntity<Object>  getExampleData(HttpServletRequest request);
 
     @POST
     @RequestMapping("/requestForm/submit")
