@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
 import "kth-style/dist/css/kth-bootstrap.css";
+import "../style/DataTable.css"
+import React, { useEffect, useState } from "react";
+
 const DataTable = () => {
     const exampleData = [{
         column: 'externalseqno',
@@ -68,8 +70,8 @@ const DataTable = () => {
 
     return (
         <div>
-
             <table class="table">
+                <caption>Available data and data examples</caption>
                 <thead>
                 <tr>
                     <th>Column name</th>
