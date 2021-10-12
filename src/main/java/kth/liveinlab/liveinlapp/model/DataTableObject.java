@@ -1,24 +1,24 @@
 package kth.liveinlab.liveinlapp.model;
 
 public class DataTableObject {
-    private String columnName;
-    private String dataType;
+    private String column;
+    private String datatype;
     private String exampleData;
 
-    public String getColumnName() {
-        return columnName;
+    public String getColumn() {
+        return column;
     }
 
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
+    public void setColumn(String column) {
+        this.column = column;
     }
 
-    public String getDataType() {
-        return dataType;
+    public String getDatatype() {
+        return datatype;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    public void setDataType(String datatype) {
+        this.datatype = datatype;
     }
 
     public String getExampleData() {

@@ -16,8 +16,6 @@ import java.util.Properties;
 
 @Component
 public class LiveInLAppImpl implements LiveInLAppAPI {
-
-
     @Override
     public String helloWorld(HttpServletRequest request) {
         String url = "jdbc:postgresql://localhost/kth_live_in_lab";
@@ -51,52 +49,31 @@ public class LiveInLAppImpl implements LiveInLAppAPI {
         try {
             Connection conn = DriverManager.getConnection(url, props);
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT column_name,data_type FROM information_schema.columns WHERE table_name = 'Temp';");
-            while(rs.next()) {
+            ResultSet rsTableData = stmt.executeQuery("SELECT column_name,data_type FROM information_schema.columns WHERE table_name = 'event_data';");
+            while(rsTableData.next()) {
                 DataTableObject row = new DataTableObject();
-                row.setColumnName(rs.getString("column_name"));
-                row.setDataType(rs.getString("data_type"));
+                row.setColumn(rsTableData.getString("column_name"));
+                row.setDataType(rsTableData.getString("data_type"));
                 res.add(row);
             }
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        String logMessage = "HELLO FROM  getTableData:::"+res.get(1).getColumnName() + " " + res.get(1).getDataType();
-        System.out.println(logMessage);
-        return new ResponseEntity<Object>(res, HttpStatus.OK);
-    }
 
-    @Override
-    public ResponseEntity<Object> getExampleData(HttpServletRequest request) {
-        String url = "jdbc:postgresql://localhost/kth_live_in_lab";
-        String[] values = new String[0];
-        Properties props = new Properties();
-        props.setProperty("user","postgres");
-        props.setProperty("password","password");
-        try {
-            Connection conn = DriverManager.getConnection(url, props);
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM \"Temp\" WHERE id = 3");
-            ResultSetMetaData resultSetMetaData = rs.getMetaData();
+            ResultSet rsExampleData = stmt.executeQuery("SELECT * FROM \"event_data\" WHERE externalseqno = 1");
+            ResultSetMetaData resultSetMetaData = rsExampleData.getMetaData();
             final int columnCount = resultSetMetaData.getColumnCount();
-            while(rs.next()) {
-                values = new String[columnCount];
+            while(rsExampleData.next()) {
                 for (int i = 1; i <= columnCount; i++) {
-                    values[i - 1] = rs.getString(i);
+                    res.get(i - 1).setExampleData(rsExampleData.getString(i));
                 }
             }
-            rs.close();
+
+            rsTableData.close();
+            rsExampleData.close();
             stmt.close();
             conn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        String logMessage = "HELLO FROM getExampledata::: " + values[0].toString() + " :: " + values[1].toString() + " :: " + values[2].toString();
-        System.out.println(logMessage);
-        return new ResponseEntity<Object>(values, HttpStatus.OK);
+        return new ResponseEntity<Object>(res, HttpStatus.OK);
     }
 
     @Override

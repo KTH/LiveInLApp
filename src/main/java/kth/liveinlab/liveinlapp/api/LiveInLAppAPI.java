@@ -31,11 +31,6 @@ public interface LiveInLAppAPI {
     @Produces({MediaType.APPLICATION_JSON})
     ResponseEntity<Object> getTableData(HttpServletRequest request);
 
-    @GET
-    @RequestMapping("/getExampleData")
-    @Produces({MediaType.APPLICATION_JSON})
-    ResponseEntity<Object>  getExampleData(HttpServletRequest request);
-
     @POST
     @RequestMapping("/requestForm/submit")
     @Produces({MediaType.APPLICATION_JSON})
