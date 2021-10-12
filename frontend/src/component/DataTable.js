@@ -3,41 +3,7 @@ import "../style/DataTable.css"
 import React, { useEffect, useState } from "react";
 
 const DataTable = () => {
-    const exampleData = [{
-        column: 'externalseqno',
-        datatype: 'bigint',
-        exampleData: '8391'
-    },{
-        column: 'mappedserverguid',
-        datatype: 'uuid',
-        exampleData: '26bdfdd7-a747-214c-808e-69a570aa9ac0'
-    },{
-        column: 'acknowledgetime',
-        datatype: 'timestamp without time zone',
-        exampleData: 'NULL'
-    }, {
-        column: 'acknowledgetime_tzinfo',
-        datatype: 'smallint',
-        exampleData: 'NULL'
-    }, {
-        column: 'alarmstate',
-        datatype: 'smallint',
-        exampleData: '1'
-    }, {
-        column: 'alarmtext',
-        datatype: 'text',
-        exampleData: 'Hög rumstemperatur'
-    }, {
-        column: 'assignedstate',
-        datatype: 'smallint',
-        exampleData: '0'
-    },{
-        column: 'assignedtodomain',
-        datatype: 'text',
-        exampleData: 'NULL'
-    }];
-    const [tableData, setTableData] = useState(exampleData)
-
+    const [tableData, setTableData] = useState([])
 
     const renderColumn = (column, index) => {
         return (
@@ -56,10 +22,8 @@ const DataTable = () => {
             try {
                 const response = await fetch(url);
                 const json = await response.json();
-                console.log(json);
-                var jsondata = JSON.parse(json);
-                var jsonarray = Array.from(json);
-                setTableData(jsonarray);
+                const tableData = Array.from(json);
+                setTableData(tableData);
             } catch (error) {
                 console.log("error", error);
             }
