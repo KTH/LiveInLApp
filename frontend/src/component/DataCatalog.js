@@ -1,10 +1,10 @@
 import "kth-style/dist/css/kth-bootstrap.css";
-//import '../style/Home.css';
+import '../style/Home.css';
 import { Link } from "react-router-dom";
 import DataTable from "./DataTable";
 function DataCatalog() {
     return (
-        <div className="App">
+        <div className="DataCatalogPage">
             <div className="container">
                 <main id="mainContent" className="mainContent">
                     <h1>About the data</h1>
@@ -20,8 +20,8 @@ function DataCatalog() {
                         <Link to="/form" className="btn btn-primary next mr-1">Go to request form</Link>
                     </div>
                 </main>
+                <div className="separator gray" />
             </div>
-            <div className="separator gray" />
         </div>
     );
 }

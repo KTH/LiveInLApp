@@ -2,8 +2,11 @@ package kth.liveinlab.liveinlapp.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kth.liveinlab.liveinlapp.database.DatabaseQueryHandler;
 import kth.liveinlab.liveinlapp.model.DataTableObject;
+import kth.liveinlab.liveinlapp.model.EventData;
 import kth.liveinlab.liveinlapp.model.RequestForm;
+import kth.liveinlab.liveinlapp.utility.ExcelFileDesigner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -80,7 +83,10 @@ public class LiveInLAppImpl implements LiveInLAppAPI {
     public String requestForm(String requestForm) {
         ObjectMapper mapper = new ObjectMapper();
         RequestForm reqForm = null;
+        ArrayList<EventData> dbList = null;
         String res = "{\"status\":\"ok\"}";
+
+        // Do mapping to java object from frontend request form
         try {
             reqForm = mapper.readValue(requestForm,RequestForm.class);
         } catch (JsonProcessingException e) {
@@ -88,6 +94,21 @@ public class LiveInLAppImpl implements LiveInLAppAPI {
             return "{\"status\":\"Data mapping failed\"}";
         }
 
-        return res;
+        //Do DB query
+        try {
+            DatabaseQueryHandler dbQuery = new DatabaseQueryHandler();
+            dbList = dbQuery.doQuery(reqForm);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        //Design the excel file
+        ExcelFileDesigner designer = new ExcelFileDesigner(reqForm.getTitle(),reqForm.getDesc());
+        if(designer.buildWorkbookFromDbResult(dbList)){
+            return res;
+        }
+        else {
+            return "{\"status\":\"error\"}";
+        }
     }
 }

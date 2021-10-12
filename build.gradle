@@ -20,8 +20,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.azure.spring:azure-spring-boot-starter'
     implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
+   // implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '2.5.5'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.apache.poi:poi-ooxml:5.0.0'
+    implementation 'org.jxls:jxls-jexcel:1.0.9'
 
     runtimeOnly project(':frontend')
 }

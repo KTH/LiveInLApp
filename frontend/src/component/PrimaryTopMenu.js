@@ -53,7 +53,7 @@ const PrimaryTopMenu = () => (
                                 <div className="headerItem">
                                     <a className="nav-link" href="/about">
                                         {" "}
-                                        About Live-in Labs
+                                        About the app
                                     </a>
                                 </div>
                             </li>
