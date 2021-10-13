@@ -6,12 +6,14 @@ import kth.liveinlab.liveinlapp.database.DatabaseQueryHandler;
 import kth.liveinlab.liveinlapp.model.DataTableObject;
 import kth.liveinlab.liveinlapp.model.EventData;
 import kth.liveinlab.liveinlapp.model.RequestForm;
+import kth.liveinlab.liveinlapp.utility.CsvFileBuilder;
 import kth.liveinlab.liveinlapp.utility.ExcelFileDesigner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,12 +105,23 @@ public class LiveInLAppImpl implements LiveInLAppAPI {
         }
 
         //Design the excel file
-        ExcelFileDesigner designer = new ExcelFileDesigner(reqForm.getTitle(),reqForm.getDesc());
-        if(designer.buildWorkbookFromDbResult(dbList)){
-            return res;
+        if(reqForm.getFileType().equals("excel")) {
+            ExcelFileDesigner designer = new ExcelFileDesigner(reqForm.getTitle(), reqForm.getDesc());
+            if(designer.buildWorkbookFromDbResult(dbList)){
+                return res;
+            }
+            else{
+                res= "{\"status\":\"error\"}";
+            }
         }
         else {
-            return "{\"status\":\"error\"}";
+            CsvFileBuilder csvFileBuilder = new CsvFileBuilder();
+            try {
+                csvFileBuilder.makeCsvFromEventData(dbList, reqForm.getTitle());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        return res;
     }
 }

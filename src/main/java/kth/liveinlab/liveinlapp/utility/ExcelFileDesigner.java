@@ -39,7 +39,7 @@ public class ExcelFileDesigner {
 
         CellStyle hStyle = workbook.createCellStyle();
         hStyle.setAlignment(HorizontalAlignment.CENTER);
-        hStyle.setFillForegroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
+        hStyle.setFillForegroundColor(IndexedColors.TURQUOISE.getIndex());
         hStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
         XSSFFont textFont = (XSSFFont) workbook.createFont();
@@ -62,6 +62,8 @@ public class ExcelFileDesigner {
         CellStyle rowStyle = workbook.createCellStyle();
         rowStyle.setWrapText(true);
         rowStyle.setAlignment(HorizontalAlignment.CENTER);
+        rowStyle.setFillForegroundColor(IndexedColors.LIGHT_TURQUOISE.getIndex());
+        rowStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
         for(int i = 1; i<=data.size();i++){
             Row row = sheet.createRow(i);
@@ -79,12 +81,16 @@ public class ExcelFileDesigner {
             cell.setCellValue(data.get(i-1).getTimestamp());
         }
 
-        String excelFile = "C:\\RandomUtveckling\\KTH\\"+"temp.xlsx";
+        File excelFile = new File("C:\\RandomUtveckling\\KTH\\"+name+".xlsx");
         try {
+            if(!excelFile.exists()){
+                excelFile.createNewFile();
+            }
             FileOutputStream outputStream = new FileOutputStream(excelFile);
             workbook.write(outputStream);
             workbook.close();
             outputStream.close();
+            res = true;
         } catch (IOException e) {
             e.printStackTrace();
         }

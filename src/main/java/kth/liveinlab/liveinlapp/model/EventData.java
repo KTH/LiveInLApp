@@ -686,5 +686,4 @@ public class EventData {
     public void setUk_mappedserverguid_timestamp_eventgui(String uk_mappedserverguid_timestamp_eventgui) {
         this.uk_mappedserverguid_timestamp_eventgui = uk_mappedserverguid_timestamp_eventgui;
     }
-
 }

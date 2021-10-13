@@ -32,6 +32,7 @@ const submitForm = (jsonbody) => {
 const RequestForm = () => (
     <div className="requester">
         <div className="container">
+            <div className="container articleNavigation">
             <h1>Data export request</h1>
             <p>Follow the form below and choose the parameters according to what you need and click Submit. The data will be then be vetted and cleaned before a final approval, the file will then be provided to you.</p>
             <Formik
@@ -44,7 +45,7 @@ const RequestForm = () => (
                     endDate: "",
                     title: "",
                     desc: "",
-
+                    fileType: "",
                 }}
                 onSubmit={async (values) => {
                     await sleep(500);
@@ -238,6 +239,19 @@ const RequestForm = () => (
                                     type="text"
                                 />
                             </div>
+                            <label className="form-control-label" htmlFor="fileType">File type</label>
+                            <div className="form-select form-group">
+                                <div className="select-wrapper">
+                                    <Field
+                                        as="select"
+                                        id="fileType"
+                                        name="fileType"
+                                        className="form-control">
+                                        <option value="csv" selected>CSV</option>
+                                        <option value="excel">Excel</option>
+                                    </Field>
+                                </div>
+                            </div>
                             <div id="submitButton">
                                 <button type="submit" className="btn btn-success">Submit</button>
                             </div>
@@ -250,7 +264,7 @@ const RequestForm = () => (
                     </Form>
                 )}
             </Formik>
-            <div className="separator gray" />
+            </div>
         </div>
 
     </div>

@@ -1,7 +1,6 @@
 package kth.liveinlab.liveinlapp.model;
 
 import java.util.List;
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -15,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "title",
         "desc"
 })
-@Generated("jsonschema2pojo")
 public class RequestForm {
 
     @JsonProperty("testbedLiL")
@@ -34,6 +32,8 @@ public class RequestForm {
     private String title;
     @JsonProperty("desc")
     private String desc;
+    @JsonProperty("fileType")
+    private String fileType;
 
     @JsonProperty("testbedLiL")
     public List<String> getTestbedLiL() {
@@ -113,5 +113,15 @@ public class RequestForm {
     @JsonProperty("desc")
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    @JsonProperty("fileType")
+    public String getFileType() {
+        return fileType;
+    }
+
+    @JsonProperty("fileType")
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 }
