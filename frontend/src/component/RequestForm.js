@@ -32,9 +32,10 @@ const submitForm = (jsonbody) => {
 const RequestForm = () => (
     <div className="requester">
         <div className="container">
-            <div className="container articleNavigation">
-            <h1>Data export request</h1>
-            <p>Follow the form below and choose the parameters according to what you need and click Submit. The data will be then be vetted and cleaned before a final approval, the file will then be provided to you.</p>
+            <div className="text-center">
+                <h1>Data export request</h1>
+                <p>Follow the form below and choose the parameters according to what you need and click Submit. The data will be then be vetted and cleaned before a final approval, the file will then be provided to you.</p>
+            </div>
             <Formik
                 initialValues={{
                     testbedLiL: [],
@@ -264,7 +265,6 @@ const RequestForm = () => (
                     </Form>
                 )}
             </Formik>
-            </div>
         </div>
 
     </div>
