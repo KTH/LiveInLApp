@@ -13,3 +13,8 @@
 .btn-group-lg {
     padding-bottom: 15px;
 }
+
+main > div .container {
+    padding-top: 3em;
+    padding-bottom: 2em;
+}
