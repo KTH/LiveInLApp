@@ -1,5 +1,4 @@
 import "kth-style/dist/css/kth-bootstrap.css";
-import "../style/DataTable.css"
 import React, { useEffect, useState } from "react";
 
 const DataTable = () => {

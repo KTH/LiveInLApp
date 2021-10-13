@@ -20,7 +20,6 @@ function DataCatalog() {
                         <Link to="/form" className="btn btn-primary next mr-1">Go to request form</Link>
                     </div>
                 </main>
-                <div className="separator gray" />
             </div>
         </div>
     );
