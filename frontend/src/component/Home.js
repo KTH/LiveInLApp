@@ -13,7 +13,6 @@ function Home() {
                     <Link to="/catalog" className="btn btn-primary next mr-1">Go to the data catalog</Link>
                 </div>
                 <a href="/about" className="link-to">For more information about this App please visit the About the app page</a>
-            <div className="separator gray" />
             </div>
         </div>
     );
