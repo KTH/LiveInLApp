@@ -1,8 +1,8 @@
 import "kth-style/dist/css/kth-bootstrap.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const DataTable = () => {
-    const [tableData, setTableData] = useState([])
+const DataTable = (props) => {
+    const [tableData] = useState(props.tableData)
 
     const renderColumn = (column, index) => {
         return (
@@ -13,23 +13,6 @@ const DataTable = () => {
             </tr>
         )
     }
-
-    useEffect(() => {
-        const url = "http://localhost:8080/api/getTableData"
-
-        const fetchData = async () => {
-            try {
-                const response = await fetch(url);
-                const json = await response.json();
-                const tableData = Array.from(json);
-                setTableData(tableData);
-            } catch (error) {
-                console.log("error", error);
-            }
-        };
-
-        fetchData();
-    }, []);
 
     return (
         <div>
