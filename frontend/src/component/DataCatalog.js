@@ -2,7 +2,28 @@ import "kth-style/dist/css/kth-bootstrap.css";
 import '../style/Home.css';
 import { Link } from "react-router-dom";
 import DataTable from "./DataTable";
+import {useState, useEffect} from "react";
 function DataCatalog() {
+    const [tableData, setTableData] = useState([]);
+
+    useEffect(() => {
+        const url = "http://localhost:8080/api/getTableData"
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch(url);
+                const json = await response.json();
+                const tableData = Array.from(json);
+                setTableData(tableData);
+            } catch (error) {
+                console.log("error", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
     return (
         <div className="DataCatalogPage">
             <div className="container">
@@ -13,7 +34,7 @@ function DataCatalog() {
                     <br/>
                     <br/>
                     <h2>Available data</h2>
-                    <DataTable />
+                    {tableData.length === 0 ? <div>Currently unable to load data</div> : <DataTable tableData={tableData}/>}
                     <br/>
                     <br/>
                     <div className="btn-group-lg">
