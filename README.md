@@ -9,8 +9,15 @@ that would be considered either not valuable or something that could identify a 
 
 This is currently just a skeleton for the actual Web interface with a simple backend demo.
 
+## Installation
+Prerequisite: npm, java, gradle
+1. Clone the project
+2. Build the project with `gradle build`. This will set up both the frontend and backend of the project.
+3. Run the project
+The project can be seen in localhost:8080
+
 ## What is implemented
-Functional Web interface using React and KTH-style css.
+Functional Web interface using React, reactstrap and KTH-style css.
 
 Springboot API for posting requests of export of data and also getting information about the database for
 cataloging the data and presenting it in the About the data page.
@@ -22,6 +29,5 @@ locally on the developers computer, the location is currently just hardcoded for
 
 - Authorization/security
 - Validating the request form data, specifically free form fields
-- Proper backend logic (for now its just a demo API as a proof of concept)
+- Proper backend logic (for now its just a demo API as a proof of concept), including data sanitation 
 - Tests
-- 
