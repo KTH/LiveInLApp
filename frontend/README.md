@@ -1,6 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Run the frontend project
+See main readme for project instructions
 
 ## Available Scripts
 
