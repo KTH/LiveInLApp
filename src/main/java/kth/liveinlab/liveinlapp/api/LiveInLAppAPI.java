@@ -20,12 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api")
 public interface LiveInLAppAPI {
 
-
-    @GET
-    @RequestMapping("/helloWorld")
-    @Produces({MediaType.TEXT_PLAIN})
-    String helloWorld(HttpServletRequest request);
-
     @GET
     @RequestMapping("/getTableData")
     @Produces({MediaType.APPLICATION_JSON})
