@@ -21,13 +21,27 @@ Functional Web interface using React, reactstrap and KTH-style css.
 
 Springboot API for posting requests of export of data and also getting information about the database for
 cataloging the data and presenting it in the About the data page.
-
-When a request is posted from the request form page the API receives and creates a file
-locally on the developers computer, the location is currently just hardcoded for a demo.
+When a request is posted from the request form page the API receives the request with the parameters chosen,
+and creates a file locally on the developers computer based on these parameters, the file location is currently just hardcoded for a demo.
+Because we never had the chance to properly decide on which fields are of interest right now the actual fields that
+are fetched and used is limited to 3, a type, a value and a timestamp. It also focuses on testbed LiL for now
+since we did not know if these different testbeds were to be seperated or not.
 
 ## Not yet implemented
 
-- Authorization/security
-- Validating the request form data, specifically free form fields
-- Proper backend logic (for now its just a demo API as a proof of concept), including data sanitation 
-- Tests
+- Authorization/security for submitting forms for export of data
+- Validating the request form data, specifically free form fields (title,description etc)
+- Proper backend logic (for now its just a demo API as a proof of concept), including data sanitation and proper SQL procedures 
+- Tests, when backend logic is better setup.
+
+## Things to think about for future production
+
+When moving towards a production setup there would need to be a proper way to communicate
+with the internal lil-es database that is hidden within KTHs network (we use VPN when connecting for now).
+
+How the file going to be sent to the recipient, and also who is the last one to approve the file.
+
+Limit amount of requests sent?
+
+Create app specific database to keep check on who has requested, how many times etc?
+ 
