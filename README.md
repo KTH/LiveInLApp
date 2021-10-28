@@ -16,6 +16,10 @@ Prerequisite: npm, java, gradle
 3. Run the project
 The project can be seen in localhost:8080
 
+You will also need to create a local postgresSQL database to use the request form.
+You can find a SQL query for creating the specific event_data table replica under:
+\src\test\resources\sql_create_local_database
+
 ## What is implemented
 Functional Web interface using React, reactstrap and KTH-style css.
 
